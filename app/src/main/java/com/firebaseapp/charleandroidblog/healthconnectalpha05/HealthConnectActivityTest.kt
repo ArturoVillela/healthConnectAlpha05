@@ -12,16 +12,10 @@ import kotlinx.coroutines.launch
 
 class HealthConnectActivityTest : AppCompatActivity() {
     val TAG = "zzzzz"
-    private lateinit var pName: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_health_connect_test)
-
-        pName = this.getPackageName()
-
-        Log.d(TAG, "onCreate: packagename: "+pName)
-
 
         initHC()
     }
@@ -31,7 +25,7 @@ class HealthConnectActivityTest : AppCompatActivity() {
             HealthPermission.createWritePermission(BloodGlucoseRecord::class))
 
     val permissionsContract =
-        PermissionController.createRequestPermissionResultContract("com.firebaseapp.charleandroidblog.HealthConnectActivityTest")
+        PermissionController.createRequestPermissionResultContract()
     val requestPermissions =
         registerForActivityResult(permissionsContract) { granted ->
             if (granted.containsAll(PERMISSIONS)) {
